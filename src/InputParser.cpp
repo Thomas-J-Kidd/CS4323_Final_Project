@@ -1,37 +1,57 @@
-#ifndef INPUTPARSER_H
-#define INPUTPARSER_H
+#include "InputParser.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
-#include <string>
-#include <queue>
-#include <vector>
+// Load and parse the file at the given filePath
+bool InputParser::loadAndParse(const std::string& filePath) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+        return false;
+    }
 
-// Define a simple structure for commands
-struct Command {
-    std::string type; // The type of command (e.g., ADD, DELETE)
-    std::vector<std::string> parameters; // Parameters of the command
-};
+    std::string line;
+    while (std::getline(file, line)) {
+        Command cmd = parseLine(line);
+        // Ensure the command type is not empty, indicating a successfully parsed line
+        if (!cmd.type.empty()) {
+            commandQueue.push(cmd);
+        } else {
+            std::cerr << "Warning: Skipping invalid or incomplete command line." << std::endl;
+        }
+    }
 
-class InputParser {
-public:
-    // Constructor
-    InputParser() = default;
+    file.close();
+    return true;
+}
 
-    // Prevent copying and assignment
-    InputParser(const InputParser&) = delete;
-    InputParser& operator=(const InputParser&) = delete;
+// Retrieve the next command from the queue
+bool InputParser::getNextCommand(Command& command) {
+    if (commandQueue.empty()) {
+        return false;
+    }
 
-    // Load and parse the file at the given filePath
-    bool loadAndParse(const std::string& filePath);
+    command = commandQueue.front();
+    commandQueue.pop();
+    return true;
+}
 
-    // Retrieve the next command from the queue
-    // Returns false if the queue is empty
-    bool getNextCommand(Command& command);
+// Utility function to parse a single line into a Command struct
+Command InputParser::parseLine(const std::string& line) {
+    std::istringstream stream(line);
+    Command cmd;
+    std::string segment;
+    std::getline(stream, cmd.type, ' '); // Extract the command type until the first space
 
-private:
-    std::queue<Command> commandQueue; // Queue to store parsed commands
+    // Parse the rest of the line for key=value pairs
+    while (std::getline(stream, segment, ' ')) {
+        std::string key, value;
+        std::istringstream segmentStream(segment);
+        if (std::getline(std::getline(segmentStream, key, '='), value)) {
+            cmd.parameters[key] = value;
+        }
+    }
 
-    // Utility function to parse a single line into a Command struct
-    Command parseLine(const std::string& line);
-};
-
-#endif // INPUTPARSER_H
+    return cmd;
+}

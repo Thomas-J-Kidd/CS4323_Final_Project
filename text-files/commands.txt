@@ -1,0 +1,9 @@
+CREATE_ACCOUNT username=john_doe email=john@example.com password=secure123
+DELETE_ACCOUNT username=jane_doe
+PLACE_ITEM_IN_CART username=john_doe product_id=1001 quantity=2
+TAKE_ITEM_OUT_OF_CART username=john_doe product_id=1002
+PURCHASE_CART username=john_doe
+DELETE_CART username=jane_doe
+LEAVE_REVIEW username=john_doe product_id=1003 rating=5 comment=Love it!
+RETURN_ITEM username=john_doe order_id=5001 product_id=1004
+FILE_COMPLAINT username=jane_doe order_id=5002 complaint=Item not as described
