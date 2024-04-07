@@ -1,3 +1,10 @@
+/*
+Author: Thomas Kidd
+Name: Input Parser
+Date written: 04/07/2024
+Updated:
+    - By: Thomas Kidd on 04/07/2023
+*/
 #ifndef INPUTPARSER_H
 #define INPUTPARSER_H
 

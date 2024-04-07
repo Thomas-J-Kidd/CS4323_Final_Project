@@ -1,3 +1,10 @@
+/*
+Author: Thomas Kidd
+Name: Input Parser
+Date written: 04/07/2024
+Updated:
+    - By: Thomas Kidd on 04/07/2023
+*/
 #include "InputParser.h"
 #include <fstream>
 #include <sstream>

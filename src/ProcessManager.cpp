@@ -1,3 +1,10 @@
+/*
+Author: Thomas Kidd
+Name: Proccess Manager
+Date written: 04/07/2024
+Updated:
+    - By: Thomas Kidd on 04/07/2023
+*/
 #include "ProcessManager.h"
 #include <iostream>
 #include <sys/wait.h>
