@@ -1,3 +1,11 @@
+/*
+Author: Keelon Viney-Young
+Name: Synchronization Module
+Date written: 04/07/2024
+Updated:
+    - By: Keelon V. Young on 04/07/2023
+*/
+
 #include <mutex>
 #include <condition_variable>
 #include <map>
