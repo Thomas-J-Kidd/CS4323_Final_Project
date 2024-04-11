@@ -34,24 +34,29 @@ void ProcessManager::processCommands(InputParser& parser) {
 }
 
 void ProcessManager::setupCommandProcessors() {
-    commandProcessors["CREATE_ACCOUNT"] = [this](const Command& cmd) -> bool { return processCreateAccount(cmd); };
-    // Add other command processors similarly
+    
+    commandProcessors["Create"] = [this](const Command& cmd) -> bool { return processCreateAccount(cmd); };
+    // commandProcessors["Close"] = [this](const Command& cmd) -> bool { return processCloseAccount(cmd); };
+    // commandProcessors["Deposit"] = [this](const Command& cmd) -> bool { return processDeposit(cmd); };
+    // commandProcessors["Withdraw"] = [this](const Command& cmd) -> bool { return processWithdraw(cmd); };
+    // commandProcessors["Transfer"] = [this](const Command& cmd) -> bool { return processTransfer(cmd); };
+    // commandProcessors["Inquiry"] = [this](const Command& cmd) -> bool { return processInquiry(cmd); };
+
+    // Add mappings for other commands as necessary
 }
 
 bool ProcessManager::processCreateAccount(const Command& cmd) {
-    // Forking logic as previously discussed
     pid_t pid = fork();
-
     if (pid == -1) {
-        // Fork failed
-        std::cerr << "Failed to fork for CREATE_ACCOUNT" << std::endl;
+        std::cerr << "Failed to fork for Create Account" << std::endl;
         return false;
     } else if (pid == 0) {
-        // Child process
-        std::cout << "Creating account: \n\tusername: " << cmd.parameters.at("username") << "\n\tpassword: " << cmd.parameters.at("password")<<std::endl;
-        exit(0); // Exit child process
+        // Child process logic for creating an account
+        std::cout << "Creating account for User ID: " << cmd.userId << std::endl;
+        // Insert logic to create an account in the banking system here
+        exit(0);
     } else {
-        // Parent process waits for child to complete
+        // Parent process waits for the child to complete
         int status;
         waitpid(pid, &status, 0);
         return WIFEXITED(status) && WEXITSTATUS(status) == 0;

@@ -48,17 +48,21 @@ bool InputParser::getNextCommand(Command& command) {
 Command InputParser::parseLine(const std::string& line) {
     std::istringstream stream(line);
     Command cmd;
-    std::string segment;
-    std::getline(stream, cmd.type, ' '); // Extract the command type until the first space
 
-    // Parse the rest of the line for key=value pairs
-    while (std::getline(stream, segment, ' ')) {
-        std::string key, value;
-        std::istringstream segmentStream(segment);
-        if (std::getline(std::getline(segmentStream, key, '='), value)) {
-            cmd.parameters[key] = value;
-        }
+    // First, extract the user ID
+    std::getline(stream, cmd.userId, ' ');
+
+    // Next, extract the command type
+    std::getline(stream, cmd.type, ' ');
+
+    // The rest of the line consists of optional parameters, handled similarly to your original approach
+    std::string param;
+    while (std::getline(stream, param, ' ')) {
+        // Assuming parameters might not be key-value pairs in this context but a list
+        // of arguments for certain commands like "Withdraw" or "Deposit"
+        cmd.parameters["args"].append(param + " "); // Concatenate arguments as a single string
     }
 
     return cmd;
 }
+

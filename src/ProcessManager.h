@@ -31,14 +31,11 @@ private:
 
     // Command processing functions
     bool processCreateAccount(const Command& cmd);
-    bool processDeleteAccount(const Command& cmd);
-    bool processPlaceItemInCart(const Command& cmd);
-    bool processTakeItemOutOfCart(const Command& cmd);
-    bool processPurchaseCart(const Command& cmd);
-    bool processDeleteCart(const Command& cmd);
-    bool processLeaveReview(const Command& cmd);
-    bool processReturnItem(const Command& cmd);
-    bool processFileComplaint(const Command& cmd);
+    bool processCloseAccount(const Command& cmd);
+    bool processDeposit(const Command& cmd);
+    bool processTransfer(const Command& cmd);
+    bool processWithdraw(const Command& cmd);
+    bool processInquiry(const Command& cmd);
 
     // Helper function to set up command processors
     void setupCommandProcessors();

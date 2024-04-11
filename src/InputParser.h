@@ -12,10 +12,10 @@ Updated:
 #include <queue>
 #include <map>
 
-// Define a simple structure for commands
 struct Command {
-    std::string type; // Type of the command (e.g., "CREATE_ACCOUNT", "ADD_PRODUCT")
-    std::map<std::string, std::string> parameters; // Key-value pairs for command parameters
+    std::string userId; // User ID associated with the command
+    std::string type; // Type of the command (e.g., "Withdraw", "Create")
+    std::map<std::string, std::string> parameters; // Additional parameters for the command
 };
 
 class InputParser {
