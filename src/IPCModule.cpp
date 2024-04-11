@@ -12,7 +12,7 @@ Updated:
 #include <mutex>
 #include <chrono>
 #include <sstream>
-#include "SynchronizationModule.cpp"  // Make sure to include the correct header file.
+#include "SynchronizationModule.h"  // Make sure to include the correct header file.
 
 struct Transaction {
     std::string type;

@@ -6,13 +6,17 @@ Updated:
     - By: Thomas Kidd on 04/07/2023
 */
 #include "ProcessManager.h"
+#include "IPCModule.h"
+#include "SynchronizationModule.h"
 #include <iostream>
 #include <sys/wait.h>
 #include <unistd.h>
 
-ProcessManager::ProcessManager() {
+ProcessManager::ProcessManager() : ipcModule(std::make_shared<IPCModule>()), 
+                                   syncModule(std::make_shared<SynchronizationModule>()) {
     setupCommandProcessors();
 }
+
 
 void ProcessManager::initialize() {
     // Initialization logic for IPC and Synchronization, if any

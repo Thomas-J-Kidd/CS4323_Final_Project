@@ -9,7 +9,8 @@ Updated:
 #define PROCESSMANAGER_H
 
 #include "InputParser.h"
-// Assuming InterProcessComs and SynchronizationMonitor are defined elsewhere
+#include "IPCModule.h"  // Include IPCModule header
+#include "SynchronizationModule.h"  // Include SynchronizationModule header
 #include <memory>
 #include <functional>
 #include <map>
@@ -24,8 +25,8 @@ public:
 
 private:
     // Example placeholder for module interaction
-    // std::shared_ptr<InterProcessComs> ipcManager;
-    // std::shared_ptr<SynchronizationMonitor> syncMonitor;
+    std::shared_ptr<IPCModule> ipcModule;
+    std::shared_ptr<SynchronizationModule> syncModule;
 
     std::map<std::string, std::function<bool(const Command&)>> commandProcessors;
 
