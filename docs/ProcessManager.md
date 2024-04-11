@@ -37,7 +37,7 @@ Each of the following functions corresponds to a specific command type, implemen
   - Handles the creation of a new user account.
   - Parameters from `cmd` are used to perform account creation logic.
 
-- **`bool processDeleteAccount(const Command& cmd)`**
+- **`bool processCloseAccount(const Command& cmd)`**
   - Processes the deletion of an existing user account.
 
 - (Additional processing functions follow a similar pattern, customized to the requirements of their respective commands.)

@@ -1,81 +1,48 @@
-# E-Commerce System Commands
+# Banking System Commands
 
-This document outlines the commands supported by the e-commerce system, detailing their purposes, required parameters, and outcomes.
+This document outlines the commands supported by the banking system, detailing their purposes, parameters, and outcomes.
 
 ## Commands
+### Create Account
 
-### CREATE_ACCOUNT
+- Format: <User ID> Create <Initial Deposit Amount>
+- Purpose: Opens a new bank account with an optional initial deposit.
+- Example: A342131 Create 40
+- Outcome: A new bank account is opened for the user with the specified ID, and an initial deposit is made if specified.
 
-- **Purpose**: Registers a new user account.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-  - `email`: User's email address.
-  - `password`: User's password.
-- **Outcome**: A new user account is created, and user details are stored.
+### Close Account
 
-### DELETE_ACCOUNT
+- Format: <User ID> Close
+- Purpose: Closes the user's bank account.
+- Example: A342131 Close
+- Outcome: The specified bank account is closed, and any remaining balance is returned to the user.
 
-- **Purpose**: Removes an existing user account.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-- **Outcome**: The specified user account is deleted along with all associated data.
+### Deposit
 
-### PLACE_ITEM_IN_CART
+- Format: <User ID> Deposit <Amount>
+- Purpose: Deposits the specified amount into the user's bank account.
+- Example: A382131 Deposit 10
+- Outcome: The specified amount is added to the user's account balance.
 
-- **Purpose**: Adds a specified item to the user's shopping cart.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-  - `product_id`: Unique identifier for the product.
-  - `quantity`: Number of items to add.
-- **Outcome**: The specified item is added to the user's cart in the specified quantity.
+### Withdraw
 
-### TAKE_ITEM_OUT_OF_CART
+- Format: <User ID> Withdraw <Amount>
+- Purpose: Withdraws the specified amount from the user's bank account.
+- Example: A332131 Withdraw 40
+- Outcome: The specified amount is deducted from the user's account balance if sufficient funds are available.
 
-- **Purpose**: Removes a specified item from the user's shopping cart.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-  - `product_id`: Unique identifier for the product.
-  - `quantity`: Number of items to add.
-- **Outcome**: The specified item is removed from the user's cart.
+### Inquiry
 
-### PURCHASE_CART
+- Format: <User ID> Inquiry
+- Purpose: Checks the current balance of the user's bank account.
+- Example: A342131 Inquiry
+- Outcome: The current balance of the user's account is displayed.
 
-- **Purpose**: Processes all items in the user's shopping cart as a single purchase.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-- **Outcome**: The purchase is finalized, inventory is updated, and an order receipt is generated.
+### Transfer
 
-### DELETE_CART
+- Format: <User ID> Transfer <Amount> <Recipient User ID>
+- Purpose: Transfers the specified amount from the user's bank account to another user's bank account.
+- Example: A342131 Transfer 40 A382131
+- Outcome: The specified amount is transferred from the sender's account to the recipient's account if sufficient funds are available.
 
-- **Purpose**: Clears all items from the user's shopping cart.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-- **Outcome**: The user's cart is emptied.
-
-### LEAVE_REVIEW
-
-- **Purpose**: Allows a user to leave a review on a purchased item.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-  - `product_id`: Unique identifier for the product.
-  - `rating`: Numeric rating for the product.
-  - `comment`: Optional textual review of the product.
-- **Outcome**: The review is associated with the product and is visible to other users.
-
-### RETURN_ITEM
-
-- **Purpose**: Initiates a return process for an item the user previously purchased.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-  - `order_id`: Unique identifier for the order containing the item.
-  - `product_id`: Unique identifier for the product being returned.
-- **Outcome**: The return is processed, and the user is refunded.
-
-### FILE_COMPLAINT
-
-- **Purpose**: Submits a complaint related to an order, product, or service.
-- **Parameters**:
-  - `username`: Unique identifier for the user.
-  - `order_id`: Unique identifier for the order, if applicable.
-  - `complaint`: Textual description of the complaint.
-- **Outcome**: The complaint is logged and flagged for review by customer service.
+Each command begins with the User ID associated with the account to perform the operation on, followed by the command, and then any arguments needed for that command.
