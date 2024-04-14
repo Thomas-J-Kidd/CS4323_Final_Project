@@ -5,6 +5,10 @@ Date written: 04/07/2024
 Updated:
     - By: Thomas Kidd on 04/07/2023
 */
+
+#ifndef INPUTPARSER_H   // Include guard
+#define INPUTPARSER_H   // Define the header file
+
 #include "InputParser.h"
 #include <fstream>
 #include <sstream>
@@ -66,3 +70,4 @@ Command InputParser::parseLine(const std::string& line) {
     return cmd;
 }
 
+#endif // INPUTPARSER_H

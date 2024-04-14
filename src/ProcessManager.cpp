@@ -8,6 +8,7 @@ Updated:
 #include "ProcessManager.h"
 #include "IPCModule.h"
 #include "SynchronizationModule.h"
+#include "Account.h"
 #include <iostream>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -55,9 +56,17 @@ bool ProcessManager::processCreateAccount(const Command& cmd) {
         std::cerr << "Failed to fork for Create Account" << std::endl;
         return false;
     } else if (pid == 0) {
+        if (exists(cmd.userId)) {
+            std::cerr << "Account already exists for User ID: " << cmd.userId << std::endl;
+            exit(1);
+        }
+        Account newAccount(cmd.userId);
+        newAccount.deposit(cmd.parameters.begin()->second);
         // Child process logic for creating an account
         std::cout << "Creating account for User ID: " << cmd.userId << std::endl;
         // Insert logic to create an account in the banking system here
+        
+
         exit(0);
     } else {
         // Parent process waits for the child to complete
