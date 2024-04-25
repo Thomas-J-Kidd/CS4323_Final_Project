@@ -1,0 +1,5 @@
+A342131 Create 100
+A382131 Create 50
+A342131 Transfer 40 A382131
+A342131 Inquiry
+A382131 Inquiry

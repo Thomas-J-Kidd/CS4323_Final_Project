@@ -1,0 +1,23 @@
+A342131 Create 40
+A342131 Inquiry
+A342131 Deposit 60
+A342131 Inquiry
+A342131 Withdraw 30
+A342131 Inquiry
+
+A342131 Create 100
+A382131 Create 0
+A342131 Transfer 50 A382131
+A342131 Inquiry
+A382131 Inquiry
+
+A999999 Withdraw 50  
+A342131 Transfer 200 A382131  
+A342131 Close
+A342131 Close  
+
+A555555 Create 50
+A555555 Deposit 20
+A555555 Withdraw 10
+A555555 Transfer 30 A342131
+A555555 Inquiry
